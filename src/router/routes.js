@@ -1,20 +1,24 @@
-
 const routes = [
   {
+    name: 'Main',
+    meta: { authenticated: true },
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
-  }
-]
+      { name: 'Index', path: '', component: () => import('pages/Index.vue') },
+    ],
+  },
+  {
+    meta: { authenticated: false },
+    name: 'Login',
+    path: '/login',
+    component: () => import('pages/auth/Login.vue'),
+  },
+  {
+    path: '/:catchAll(.*)*',
+    component: () => import('pages/Error404.vue'),
+    meta: { authenticated: false },
+  },
+];
 
-// Always leave this as last one
-if (process.env.MODE !== 'ssr') {
-  routes.push({
-    path: '*',
-    component: () => import('pages/Error404.vue')
-  })
-}
-
-export default routes
+export default routes;
