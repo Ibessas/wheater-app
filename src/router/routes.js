@@ -1,23 +1,17 @@
 const routes = [
   {
-    name: 'Main',
-    meta: { authenticated: true },
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { name: 'Index', path: '', component: () => import('pages/Index.vue') },
+      { path: '', component: () => import('pages/Index.vue') },
     ],
   },
-  {
-    meta: { authenticated: false },
-    name: 'Login',
-    path: '/login',
-    component: () => import('pages/auth/Login.vue'),
-  },
+
+  // Always leave this as last one,
+  // but you can also remove it
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue'),
-    meta: { authenticated: false },
   },
 ];
 

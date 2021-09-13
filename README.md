@@ -1,4 +1,4 @@
-# Quasar App (quasar-workshop)
+# Quasar App (test)
 
 A Quasar Framework app
 

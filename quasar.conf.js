@@ -1,6 +1,15 @@
+/*
+ * This file runs in a Node context (it's NOT transpiled by Babel), so use only
+ * the ES6 features that are supported by your Node version. https://node.green/
+ */
 
+// Configuration for your app
 // https://v2.quasar.dev/quasar-cli/quasar-conf-js
 
+/* eslint-env node */
+const ESLintPlugin = require('eslint-webpack-plugin');
+/* eslint func-names: 0 */
+/* eslint global-require: 0 */
 const { configure } = require('quasar/wrappers');
 
 module.exports = configure((ctx) => ({
@@ -14,7 +23,6 @@ module.exports = configure((ctx) => ({
   // --> boot files are part of "main.js"
   // https://v2.quasar.dev/quasar-cli/boot-files
   boot: [
-    'i18n',
     'axios',
   ],
 
@@ -25,16 +33,22 @@ module.exports = configure((ctx) => ({
 
   // https://github.com/quasarframework/quasar/tree/dev/extras
   extras: [
+    // 'ionicons-v4',
+    // 'mdi-v5',
+    // 'fontawesome-v5',
+    // 'eva-icons',
+    // 'themify',
+    // 'line-awesome',
+    // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+
     'roboto-font', // optional, you are not bound to it
     'material-icons', // optional, you are not bound to it
   ],
 
   // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
   build: {
-    vueRouterMode: 'history', // available values: 'hash', 'history'
-    env: {
-      API_KEY: process.env.API_KEY
-    },
+    vueRouterMode: 'hash', // available values: 'hash', 'history'
+
     // transpile: false,
 
     // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -53,12 +67,12 @@ module.exports = configure((ctx) => ({
 
     // https://v2.quasar.dev/quasar-cli/handling-webpack
     // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-    extendWebpack(cfg) {
-      cfg.module.rules.push({
-        exclude: /node_modules/,
-        resourceQuery: /blockType=i18n/,
-      });
+    chainWebpack(chain) {
+      chain.plugin('eslint-webpack-plugin')
+        .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }]);
     },
+
+    env: require('dotenv').config().parsed,
   },
 
   // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
@@ -194,7 +208,7 @@ module.exports = configure((ctx) => ({
     builder: {
       // https://www.electron.build/configuration/configuration
 
-      appId: 'quasar-workshop',
+      appId: 'test',
     },
 
     // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

@@ -6,8 +6,10 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'App',
-  created() {
-    console.log(process.env);
+
+  mounted() {
+    // eslint-disable-next-line no-console
+    console.log('Hello World', import.meta.PORT);
   },
 });
 </script>

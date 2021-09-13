@@ -1,6 +1,5 @@
 import { store } from 'quasar/wrappers';
 import { createStore } from 'vuex';
-import wheater from './wheater';
 
 // import example from './module-example'
 
@@ -16,7 +15,7 @@ import wheater from './wheater';
 export default store((/* { ssrContext } */) => {
   const Store = createStore({
     modules: {
-      wheater,
+      // example
     },
 
     // enable strict mode (adds overhead!)
