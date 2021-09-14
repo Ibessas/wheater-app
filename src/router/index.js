@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Formatter from '../filters/formatters';
 
 import routes from './routes'
+
+Formatter(Vue);
 
 Vue.use(VueRouter)
 
@@ -15,7 +18,10 @@ export default function (/* { store, ssrContext } */) {
   })
 
   Router.beforeEach((to, from, next) => {
-    if (to.meta.authenticated && !localStorage.getItem('token')) return next({ name: 'Login' });
+    if (to.meta.authenticated && !localStorage.getItem('token')) {
+      return next({ name: 'Login' });
+    }
+
     return next();
   });
 

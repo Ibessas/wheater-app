@@ -2,8 +2,8 @@
   "name": "cupom-verde-webapp",
   "version": "0.0.1",
   "description": "",
-  "productName": "Cupom Verde",
-  "cordovaId": "br.com.cupomverde.webapp",
+  "productName": "Wheater",
+  "cordovaId": "br.com.Wheater.webapp",
   "capacitorId": "",
   "author": "Anderson Andrade <andersonandrade@casamagalhaes.com.br>",
   "private": true,
@@ -14,7 +14,8 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.4",
-    "quasar": "^1.0.0"
+    "quasar": "^1.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",

@@ -7,7 +7,7 @@
     use-input
     filled
     @filter="searchPlace"
-    input-debounce="100"
+    input-debounce="1000"
   >
     <template v-slot:option="item">
       <q-item>
@@ -54,6 +54,7 @@ export default {
     },
     async addCard({ opt }) {
       await this.addPlace(opt);
+      this.clearSuggestions();
     },
   },
 };

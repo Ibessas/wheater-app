@@ -1,62 +1,29 @@
 <template>
-  <div>
-    <city :city="data" />
+  <div class="fit row wrap q-pt-md">
+    <div v-for="city in cities" :key="city.id">
+      <city :city="city" class="q-mr-md q-mb-md" />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import City from './City.vue';
 export default {
   components: { City },
   data() {
-    return {
-      data: {
-        Headline: {
-          EffectiveDate: '2021-09-14T07:00:00-03:00',
-          EffectiveEpochDate: 1631613600,
-          Severity: 7,
-          Text: 'Less humid tomorrow',
-          Category: 'humidity',
-          EndDate: '2021-09-14T19:00:00-03:00',
-          EndEpochDate: 1631656800,
-          MobileLink:
-            'http://www.accuweather.com/en/br/quixada/38046/daily-weather-forecast/38046?lang=en-us',
-          Link: 'http://www.accuweather.com/en/br/quixada/38046/daily-weather-forecast/38046?lang=en-us',
-        },
-        DailyForecasts: [
-          {
-            Date: '2021-09-13T07:00:00-03:00',
-            EpochDate: 1631527200,
-            Temperature: {
-              Minimum: {
-                Value: 68.0,
-                Unit: 'F',
-                UnitType: 18,
-              },
-              Maximum: {
-                Value: 89.0,
-                Unit: 'F',
-                UnitType: 18,
-              },
-            },
-            Day: {
-              Icon: 2,
-              IconPhrase: 'Mostly sunny',
-              HasPrecipitation: false,
-            },
-            Night: {
-              Icon: 33,
-              IconPhrase: 'Clear',
-              HasPrecipitation: false,
-            },
-            Sources: ['AccuWeather'],
-            MobileLink:
-              'http://www.accuweather.com/en/br/quixada/38046/daily-weather-forecast/38046?day=1&lang=en-us',
-            Link: 'http://www.accuweather.com/en/br/quixada/38046/daily-weather-forecast/38046?day=1&lang=en-us',
-          },
-        ],
-      },
-    };
+    return {};
+  },
+  methods: {
+    ...mapActions('wheater', ['getCities']),
+  },
+  computed: {
+    ...mapGetters('wheater', ['cities']),
+  },
+  created() {
+    this.getCities();
   },
 };
 </script>
+
+<style lang="stylus" scoped></style>
